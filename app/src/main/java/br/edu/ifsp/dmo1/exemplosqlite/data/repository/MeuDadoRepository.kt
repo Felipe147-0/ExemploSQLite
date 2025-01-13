@@ -13,4 +13,6 @@ class MeuDadoRepository (context: Context) {
     fun getAllMeusDados(): List<MeuDado> = dao.getAll()
 
     fun addMeuDado(dado: MeuDado) = dao.insert(dado)
+
+    fun updateMeuDado(dado: MeuDado) = dao.update(dado)
 }

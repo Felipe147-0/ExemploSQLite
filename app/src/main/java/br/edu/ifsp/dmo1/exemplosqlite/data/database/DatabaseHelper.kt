@@ -31,7 +31,7 @@ class DatabaseHelper (context: Context) : SQLiteOpenHelper(
         db.execSQL(CREATE_TABLE_V2)
     }
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
+    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {  // para atualizar o banco quando estiver com versão desatualizada
         when {
             oldVersion < 2 -> {
                 updateToVersion2(db)
@@ -39,17 +39,17 @@ class DatabaseHelper (context: Context) : SQLiteOpenHelper(
         }
     }
     private fun updateToVersion2(db: SQLiteDatabase) {
-        var sql = "ALTER TABLE ${DATABASE_KEYS.TABLE_NAME} RENAME TO ${DATABASE_KEYS.TABLE_NAME}_OLD"
+        var sql = "ALTER TABLE ${DATABASE_KEYS.TABLE_NAME} RENAME TO ${DATABASE_KEYS.TABLE_NAME}_OLD" //renomeia a tabela para manter os dados antigos renomeados
         db.execSQL(sql)
 
-        db.execSQL(CREATE_TABLE_V2)
+        db.execSQL(CREATE_TABLE_V2) //executa a tabela nova
 
         sql = "INSERT INTO ${DATABASE_KEYS.TABLE_NAME} (${DATABASE_KEYS.COLUMN_TEXTO}) " +
                 "SELECT ${DATABASE_KEYS.COLUMN_TEXTO} " +
                 "FROM ${DATABASE_KEYS.TABLE_NAME}_OLD"
         db.execSQL(sql)
 
-        sql = "DROP TABLE ${DATABASE_KEYS.TABLE_NAME}_OLD"
+        sql = "DROP TABLE ${DATABASE_KEYS.TABLE_NAME}_OLD"  //drop da velha, para garantir não perder dados
         db.execSQL(sql)
     }
 }
