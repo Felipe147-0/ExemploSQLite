@@ -8,7 +8,7 @@ import br.edu.ifsp.dmo1.exemplosqlite.R
 import br.edu.ifsp.dmo1.exemplosqlite.data.model.MeuDado
 import br.edu.ifsp.dmo1.exemplosqlite.databinding.ItemListDadoBinding
 
-class MeuDadoAdapter (private var dataset: List<MeuDado>) : RecyclerView.Adapter<MeuDadoAdapter.ViewHolder>(){
+class MeuDadoAdapter (private var dataset: List<MeuDado>, private val listener: ItemListDadoClickListener) : RecyclerView.Adapter<MeuDadoAdapter.ViewHolder>(){
 
     fun updateDados(dados: List<MeuDado>) {
         dataset = dados
@@ -22,7 +22,15 @@ class MeuDadoAdapter (private var dataset: List<MeuDado>) : RecyclerView.Adapter
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val dado = dataset[position]
+        holder.binding.textIdDado.setText("{${dado.id}}")
+
         holder.binding.textTextoDado.setText(dado.texto)
+        holder.binding.imageEditDado.setOnClickListener{
+            listener.clickEditItemList(dado.id,dado.texto)
+        }
+        holder.binding.imageDeleteDado.setOnClickListener{
+            listener.clickDeleteItemList(dado.id)
+        }
     }
 
     override fun getItemCount(): Int {

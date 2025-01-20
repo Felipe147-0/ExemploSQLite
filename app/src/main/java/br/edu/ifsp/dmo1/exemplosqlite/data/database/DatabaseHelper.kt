@@ -11,7 +11,7 @@ class DatabaseHelper (context: Context) : SQLiteOpenHelper(
         DATABASE_KEYS.DATABASE_VERSION){
 
     object DATABASE_KEYS {
-        const val DATABASE_NAME = "exemplo_database.db"
+        const val DATABASE_NAME = "exemplo_database.db" //não é uma extensão .db aqui é apenas para exemplo que este é o banco de dados
         const val DATABASE_VERSION = 2
         const val TABLE_NAME = "tb_meu_dado"
         const val COLUMN_ID = "id"

@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
+    android:padding="16dp"
     android:layout_height="wrap_content">
 
     <TextView
@@ -27,5 +28,27 @@
         android:textStyle="bold"
         app:layout_constraintStart_toEndOf="@id/text_id_dado"
         app:layout_constraintTop_toTopOf="@id/text_id_dado" />
+
+    <ImageView
+        android:id="@+id/image_edit_dado"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_edit"
+        app:layout_constraintBottom_toBottomOf="@id/text_id_dado"
+        app:layout_constraintEnd_toStartOf="@id/image_delete_dado"
+        app:layout_constraintTop_toTopOf="@id/text_id_dado"
+        app:tint="#304FFE" />
+
+    <ImageView
+        android:id="@+id/image_delete_dado"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_margin="12dp"
+        android:src="@drawable/ic_delete"
+        app:layout_constraintBottom_toBottomOf="@id/text_id_dado"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/text_id_dado"
+        app:tint="#D50000" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
